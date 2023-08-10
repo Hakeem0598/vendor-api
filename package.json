@@ -2,5 +2,18 @@
   "name": "vendor-api",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./build/index.js"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "@types/node": "^20.4.9",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@aws-sdk/util-dynamodb": "^3.388.0",
+    "aws-sdk": "^2.1434.0",
+    "dotenv": "^16.3.1"
+  }
 }
