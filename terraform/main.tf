@@ -5,7 +5,7 @@ resource "aws_dynamodb_table" "websocket_table" {
   hash_key       = "connectionId"
 
   attribute {
+    type = "S"
     name = "connectionId"
-    type = string
   }
 }
