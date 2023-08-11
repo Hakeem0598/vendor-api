@@ -1,11 +1,5 @@
-resource "aws_dynamodb_table" "websocket_table" {
-  name           = var.websocket_table_name
-  read_capacity  = 10
-  write_capacity = 10
-  hash_key       = "connectionId"
+data "aws_caller_identity" "current" {}
 
-  attribute {
-    type = "S"
-    name = "connectionId"
-  }
+locals {
+  account_id = data.aws_caller_identity.current.account_id
 }

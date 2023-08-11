@@ -26,3 +26,8 @@ variable "vendor_table_name" {
   type    = string
   default = "test_vendors"
 }
+
+variable "sqs_queue_name" {
+  type    = string
+  default = "vendor-twitter-queue"
+}
