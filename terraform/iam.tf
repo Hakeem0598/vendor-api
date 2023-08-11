@@ -14,12 +14,10 @@ resource "aws_iam_role" "lambda_main" {
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 
-resource "aws_iam_role_policy_attachment" "name" {
+resource "aws_iam_role_policy_attachment" "attach_exec_role" {
   role       = aws_iam_role.lambda_main.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
-
-
 
 data "aws_iam_policy_document" "lamba_ws" {
   statement {
@@ -49,8 +47,7 @@ resource "aws_iam_policy" "iam_policy" {
   policy = data.aws_iam_policy_document.lamba_ws.json
 }
 
-
-resource "aws_iam_role_policy_attachment" "name" {
+resource "aws_iam_role_policy_attachment" "attach_lambda_role" {
   role       = aws_iam_role.lambda_main.name
   policy_arn = aws_iam_policy.iam_policy.arn
 }
