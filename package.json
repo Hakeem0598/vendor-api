@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./build/index.js"
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.119",
