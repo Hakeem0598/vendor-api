@@ -34,7 +34,7 @@ data "aws_iam_policy_document" "lamba_ws" {
     ]
     effect = "Allow"
     resources = [
-      "arn:aws:sqs:${var.aws_region}:${local.account_id}:${sqs_queue_name}",
+      "arn:aws:sqs:${var.aws_region}:${local.account_id}:${var.sqs_queue_name}",
       "arn:aws:dynamodb:${var.aws_region}:${local.account_id}:table/${var.vendor_table_name}",
       "arn:aws:dynamodb:${var.aws_region}:${local.account_id}:table/${var.websocket_table_name}",
     #   "arn:aws:execute-api:${var.aws_region}:${local.account_id}:{ApiId}/${var.api_gateway_stage_name}/{Method}/{ApiSpecificResourcePath}"
