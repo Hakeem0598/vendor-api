@@ -30,7 +30,7 @@ jobs:
               id: login-ecr
               uses: aws-actions/amazon-ecr-login@v1
 
-            - name: Create repository
+            - name: Create connect ECR repository
               uses: int128/create-ecr-repository-action@v1
               with:
                   repository: ${{ secrets.AWS_ECR_NAME_CONNECT }}
@@ -44,7 +44,7 @@ jobs:
                   docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --target $REPOSITORY .
                   docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
-            - name: Build disconnect ECR
+            - name: Create disconnect ECR repository
               uses: int128/create-ecr-repository-action@v1
               with:
                   repository: ${{ secrets.AWS_ECR_NAME_DISCONNECT }}
@@ -58,11 +58,11 @@ jobs:
                   docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --target $REPOSITORY .
                   docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
-                  - name: Build sendvendor ECR
-                  uses: int128/create-ecr-repository-action@v1
-                  id: sendvendor-ecr
-                  with:
-                    repository: ${{ secrets.AWS_ECR_NAME_SENDVENDOR }}
+            - name: Create sendvendor ECR repository
+              uses: int128/create-ecr-repository-action@v1
+              id: sendvendor-ecr
+              with:
+                  repository: ${{ secrets.AWS_ECR_NAME_SENDVENDOR }}
 
             - name: Build, tag, and push sendvendor image to Amazon ECR
               env:
@@ -73,7 +73,7 @@ jobs:
                   docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --target $REPOSITORY .
                   docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
-            - name: Build getvendors ECR
+            - name: Create getvendors ECR repository
               uses: int128/create-ecr-repository-action@v1
               with:
                   repository: ${{ secrets.AWS_ECR_NAME_GETVENDORS }}
