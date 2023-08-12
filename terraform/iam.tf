@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "lamba_ws" {
       "arn:aws:sqs:${var.aws_region}:${local.account_id}:${var.sqs_queue_name}",
       "arn:aws:dynamodb:${var.aws_region}:${local.account_id}:table/${var.vendor_table_name}",
       "arn:aws:dynamodb:${var.aws_region}:${local.account_id}:table/${var.websocket_table_name}",
-    #   "arn:aws:execute-api:${var.aws_region}:${local.account_id}:{ApiId}/${var.api_gateway_stage_name}/{Method}/{ApiSpecificResourcePath}"
+      "${aws_apigatewayv2_api.websocket_gw.execution_arn}/*"
     ]
   }
 }

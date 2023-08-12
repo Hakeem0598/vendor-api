@@ -71,9 +71,9 @@ resource "aws_lambda_function" "sendvendor" {
   timeout       = 30
   environment {
     variables = {
-      AWS_TABLE_NAME = var.websocket_table_name
-      AWS_SQS_URL    = "https://sqs.${var.aws_region}.amazonaws.com/${local.account_id}/${var.sqs_queue_name}"
-      #   AWS_WEBSOCKET_URL = ""
+      AWS_TABLE_NAME    = var.websocket_table_name
+      AWS_SQS_URL       = "https://sqs.${var.aws_region}.amazonaws.com/${local.account_id}/${var.sqs_queue_name}"
+      AWS_WEBSOCKET_URL = "${aws_apigatewayv2_api.websocket_gw.api_endpoint}/${var.api_gateway_stage_name}"
     }
   }
 }
