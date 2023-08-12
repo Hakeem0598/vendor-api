@@ -16,7 +16,7 @@ resource "aws_lambda_permission" "connect_permission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.connect.function_name
   principal     = "apigateway.amazonaws.com"
-  #   source_arn = 
+  source_arn    = aws_apigatewayv2_api.websocket_gw.arn
 }
 
 
@@ -38,7 +38,7 @@ resource "aws_lambda_permission" "disconnect_permission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.disconnect.function_name
   principal     = "apigateway.amazonaws.com"
-  #   source_arn = 
+  source_arn    = aws_apigatewayv2_api.websocket_gw.arn
 }
 
 resource "aws_lambda_function" "getvendors" {
@@ -59,7 +59,7 @@ resource "aws_lambda_permission" "getvendors_permission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.getvendors.function_name
   principal     = "apigateway.amazonaws.com"
-  #   source_arn = 
+  source_arn    = aws_apigatewayv2_api.websocket_gw.arn
 }
 
 
