@@ -31,9 +31,9 @@ resource "aws_apigatewayv2_route" "connect" {
   target    = "integrations/${aws_apigatewayv2_integration.connect.id}"
 }
 
-resource "aws_apigatewayv2_route" "diconnect" {
+resource "aws_apigatewayv2_route" "disconnect" {
   api_id    = aws_apigatewayv2_api.websocket_gw.id
-  route_key = "$diconnect"
+  route_key = "$disconnect"
   target    = "integrations/${aws_apigatewayv2_integration.disconnect.id}"
 }
 
