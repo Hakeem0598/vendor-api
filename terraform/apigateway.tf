@@ -50,31 +50,31 @@ resource "aws_apigatewayv2_stage" "primary_websocket" {
   auto_deploy = true
 }
 
-# resource "aws_apigatewayv2_api" "http_gw" {
-#   name          = "${var.app_name}-http"
-#   protocol_type = "HTTP"
-#   cors_configuration {
-#     allow_origins = ["*"]
-#     allow_methods = ["GET"]
-#     allow_headers = ["context-type"]
-#   }
-# }
+resource "aws_apigatewayv2_api" "http_gw" {
+  name          = "${var.app_name}-http"
+  protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = ["*"]
+    allow_methods = ["GET"]
+    allow_headers = ["context-type"]
+  }
+}
 
-# resource "aws_apigatewayv2_integration" "getvendors" {
-#   api_id             = aws_apigatewayv2_api.http_gw.id
-#   integration_uri    = aws_lambda_function.getvendors.invoke_arn
-#   integration_type   = "AWS_PROXY"
-#   integration_method = "POST"
-# }
+resource "aws_apigatewayv2_integration" "getvendors" {
+  api_id             = aws_apigatewayv2_api.http_gw.id
+  integration_uri    = aws_lambda_function.getvendors.invoke_arn
+  integration_type   = "AWS_PROXY"
+  integration_method = "POST"
+}
 
-# resource "aws_apigatewayv2_route" "getvendors" {
-#   api_id    = aws_apigatewayv2_api.http_gw.id
-#   route_key = "GET /vendors"
-#   target    = "integrations/${aws_apigatewayv2_integration.getvendors.id}"
-# }
+resource "aws_apigatewayv2_route" "getvendors" {
+  api_id    = aws_apigatewayv2_api.http_gw.id
+  route_key = "GET /vendors"
+  target    = "integrations/${aws_apigatewayv2_integration.getvendors.id}"
+}
 
-# resource "aws_apigatewayv2_stage" "primary_http" {
-#   api_id      = aws_apigatewayv2_api.http_gw.id
-#   name        = var.api_gateway_stage_name
-#   auto_deploy = true
-# }
+resource "aws_apigatewayv2_stage" "primary_http" {
+  api_id      = aws_apigatewayv2_api.http_gw.id
+  name        = var.api_gateway_stage_name
+  auto_deploy = true
+}
